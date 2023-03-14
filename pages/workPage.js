@@ -98,7 +98,7 @@ export const getServerSideProps = async (ctx) => {
   } else {
     const result = await new Promise((resolve, reject) => {
       db.query(
-        "SELECT data FROM userdata HERE userid=?;",
+        "SELECT data FROM userdata WHERE userid=?;",
         [session.user.id],
         (err, data) => {
           if (err) return reject(err);
