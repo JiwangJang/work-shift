@@ -9,7 +9,7 @@ import {
 import { ContentContext } from "../../Content.js";
 import CalenderDataMaker from "@/libs/CalenderDataMaker.js";
 
-export default function Order() {
+const Order = () => {
   const [result, setResult] = useState(
     <div className='h-1/3'>
       <h2>로딩중</h2>
@@ -136,4 +136,6 @@ export default function Order() {
   }, [mainData, WorkOrder, upEvent, downEvent, removeEvent]);
 
   return <>{result}</>;
-}
+};
+
+export default Order;

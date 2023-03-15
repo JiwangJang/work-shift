@@ -1,6 +1,6 @@
 import CalenderDataMaker from "./CalenderDataMaker";
 
-export default function DataMaker() {
+const DataMaker = () => {
   const today = new Date();
   const year = today.getFullYear();
   const month = today.getMonth();
@@ -12,4 +12,6 @@ export default function DataMaker() {
     Month: month,
     mode: "all",
   };
-}
+};
+
+export default DataMaker;

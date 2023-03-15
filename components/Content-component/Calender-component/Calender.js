@@ -3,7 +3,7 @@ import { ContentContext } from "@/components/Content";
 import Thead from "./Thead";
 import Tbody from "./Tbody";
 
-export default function Calender() {
+const Calender = () => {
   const [result, setResult] = useState(<></>);
   const mainData = useContext(ContentContext).mainData;
   const setMainData = useContext(ContentContext).setMainData;
@@ -19,3 +19,5 @@ export default function Calender() {
 
   return <>{result}</>;
 }
+
+export default Calender

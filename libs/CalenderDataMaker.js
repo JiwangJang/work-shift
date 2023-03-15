@@ -1,10 +1,10 @@
-export default function CalenderDataMaker(
+const CalenderDataMaker = (
   year,
   month,
   existData,
   newOrder = [],
   mode = ""
-) {
+) => {
   let index = -1;
 
   switch (mode) {
@@ -68,4 +68,6 @@ export default function CalenderDataMaker(
       }
       return CalenderData;
   }
-}
+};
+
+export default CalenderDataMaker;

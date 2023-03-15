@@ -2,7 +2,7 @@ import Week from "./Week";
 import ForCalenderRender from "@/libs/ForCalenderRender";
 import uuid from "@/libs/uuid";
 
-export default function Tbody({ mainData }) {
+const Tbody = ({ mainData }) => {
   const newCalenderData = [...mainData.CalenderData];
   const year = mainData.Year;
   const month = mainData.Month;
@@ -16,3 +16,5 @@ export default function Tbody({ mainData }) {
     </tbody>
   );
 }
+
+export default Tbody

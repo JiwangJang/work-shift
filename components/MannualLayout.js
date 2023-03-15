@@ -1,4 +1,4 @@
-export default function MannualLayout({ children }) {
+const MannualLayout = ({ children }) => {
   return (
     <div className='h-600 flex flex-col justify-around items-center font-popup text-3xl '>
       <p>
@@ -26,4 +26,6 @@ export default function MannualLayout({ children }) {
       </button>
     </div>
   );
-}
+};
+
+export default MannualLayout;

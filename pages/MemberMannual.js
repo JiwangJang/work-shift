@@ -1,6 +1,6 @@
 import MannualLayout from "@/components/MannualLayout";
 
-export default function MemberMannual() {
+const MemberMannual = () => {
   return (
     <MannualLayout>
       <p>
@@ -12,4 +12,6 @@ export default function MemberMannual() {
       </p>
     </MannualLayout>
   );
-}
+};
+
+export default MemberMannual;

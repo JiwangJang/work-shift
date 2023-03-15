@@ -4,7 +4,7 @@ import WorkInfoSideBar from "./Content-component/WorkInfoSideBar";
 
 export const ContentContext = createContext();
 
-export default function Content({ data }) {
+const Content = ({ data }) => {
   const [mainData, setMainData] = useState(() => data);
   useEffect(() => {
     localStorage.setItem("data", JSON.stringify(mainData));
@@ -18,4 +18,6 @@ export default function Content({ data }) {
       </div>
     </ContentContext.Provider>
   );
-}
+};
+
+export default Content;

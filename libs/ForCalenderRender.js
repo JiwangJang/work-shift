@@ -1,5 +1,5 @@
 // 달력 렌더링 및 엑셀 추출을 위한 데이터를 만드는 함수
-export default function ForCalenderRender(origin, year, month) {
+const ForCalenderRender = (origin, year, month) => {
   const conclusion = [];
   const firstDate = new Date(year, month, 1).getDay();
   const lastDate = new Date(year, month + 1, 0).getDate();
@@ -43,4 +43,5 @@ export default function ForCalenderRender(origin, year, month) {
     conclusion.push(semi);
   }
   return conclusion;
-}
+};
+export default ForCalenderRender;

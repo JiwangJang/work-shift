@@ -5,7 +5,7 @@ import db from "@/libs/dbConfig";
 import DataMaker from "@/libs/DataMaker";
 import { getLogger } from "@/logging/log-util";
 
-export default function Home({ session, data }) {
+const Home = ({ session, data }) => {
   if (session.errMsg && typeof window !== "undefined") {
     alert(`${session.errMsg}`);
     signOut({ callbackUrl: "/" });
@@ -86,7 +86,9 @@ export default function Home({ session, data }) {
       <Content data={data} />
     </>
   );
-}
+};
+
+export default Home;
 
 export const getServerSideProps = async (ctx) => {
   const session = await getSession(ctx);

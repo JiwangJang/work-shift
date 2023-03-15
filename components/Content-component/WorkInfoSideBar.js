@@ -2,7 +2,7 @@ import Register from "./WorkInfoSideBar-component/Register";
 import List from "./WorkInfoSideBar-component/List";
 import Order from "./WorkInfoSideBar-component/Order";
 
-export default function WorkInfoSideBar() {
+const WorkInfoSideBar = () => {
   return (
     <div className='flex flex-col h-full fixed SideBar bg-slate-200 w-1/5 transition-all ease-in-out'>
       <Register />
@@ -10,4 +10,6 @@ export default function WorkInfoSideBar() {
       <Order />
     </div>
   );
-}
+};
+
+export default WorkInfoSideBar;

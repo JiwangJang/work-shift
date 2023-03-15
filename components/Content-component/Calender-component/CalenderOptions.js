@@ -17,7 +17,7 @@ class forXlsx {
   }
 }
 
-export default function CalenderOptions() {
+const CalenderOptions = () => {
   const [monthSelect, setMonthSelect] = useState(false);
   const mainData = useContext(ContentContext).mainData;
   const setMainData = useContext(ContentContext).setMainData;
@@ -139,39 +139,6 @@ export default function CalenderOptions() {
     }));
   };
 
-  // const weekendWorkShift = () => {
-  //   if (JSON.stringify(mainData.WorkOrder) == JSON.stringify([]))
-  //     return alert("근무순서를 먼저 입력해주십시오");
-
-  //   setMainData((prev) => ({
-  //     ...prev,
-  //     mode: "weekend",
-  //     CalenderData: CalenderDataMaker(
-  //       prev.year,
-  //       prev.month,
-  //       prev.CalenderData,
-  //       prev.WorkOrder,
-  //       "weekend"
-  //     ),
-  //   }));
-  // };
-
-  // const weekdayWorkShift = () => {
-  //   if (JSON.stringify(mainData.WorkOrder) === JSON.stringify([]))
-  //     return alert("근무순서를 먼저 입력해주십시오");
-  //   setMainData({
-  //     ...prev,
-  //     mode: "weekday",
-  //     CalenderData: CalenderDataMaker(
-  //       prev.year,
-  //       prev.month,
-  //       prev.CalenderData,
-  //       prev.WorkOrder,
-  //       "weekday"
-  //     ),
-  //   });
-  // };
-
   return (
     <div className='w-1/5 flex flex-col justify-around items-center '>
       <button className='CalenderOptionBtn' onClick={xlsxDown}>
@@ -207,4 +174,6 @@ export default function CalenderOptions() {
       </button>
     </div>
   );
-}
+};
+
+export default CalenderOptions;

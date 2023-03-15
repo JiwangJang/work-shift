@@ -2,7 +2,7 @@ import { useContext, useEffect, useState, useCallback, useMemo } from "react";
 import { ContentContext } from "../../Content.js";
 import CalenderDataMaker from "../../../libs/CalenderDataMaker";
 
-export default function List() {
+const List = () => {
   const [result, setResult] = useState(<></>);
   const mainData = useContext(ContentContext).mainData;
   const setMainData = useContext(ContentContext).setMainData;
@@ -149,4 +149,6 @@ export default function List() {
   }, [mainData, originWorkerList, reviseEvent, removeEvent]);
 
   return <>{result}</>;
-}
+};
+
+export default List;

@@ -1,4 +1,4 @@
-export default function Thead({ year, month }) {
+const Thead = ({ year, month }) => {
   const title = `${year}년 ${month + 1}월 당직근무표`;
   const days = ["일", "월", "화", "수", "목", "금", "토"];
   return (
@@ -16,3 +16,5 @@ export default function Thead({ year, month }) {
     </thead>
   );
 }
+
+export default Thead;

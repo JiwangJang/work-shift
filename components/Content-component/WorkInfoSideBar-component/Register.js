@@ -2,7 +2,7 @@ import CalenderDataMaker from "@/libs/CalenderDataMaker";
 import { useState, useRef, useContext } from "react";
 import { ContentContext } from "../../Content";
 
-function Inputs({ count }) {
+const Inputs = ({ count }) => {
   return (
     <div className='h-3/5 flex flex-col items-center w-full overflow-y-auto Register scroll-design'>
       {count.map((input, idx) => (
@@ -20,9 +20,9 @@ function Inputs({ count }) {
       ))}
     </div>
   );
-}
+};
 
-function Buttons({ inputCount, setInputCount }) {
+const Buttons = ({ inputCount, setInputCount }) => {
   const mainData = useContext(ContentContext).mainData;
   const setMainData = useContext(ContentContext).setMainData;
   const id = useRef(1);
@@ -88,9 +88,9 @@ function Buttons({ inputCount, setInputCount }) {
       </button>
     </div>
   );
-}
+};
 
-export default function Register() {
+const Register = () => {
   const [inputCount, setInputCount] = useState([0]);
 
   return (
@@ -102,4 +102,5 @@ export default function Register() {
       <Buttons setInputCount={setInputCount} inputCount={inputCount} />
     </div>
   );
-}
+};
+export default Register;

@@ -2,7 +2,7 @@ import uuid from "@/libs/uuid";
 import { useContext } from "react";
 import { ContentContext } from "@/components/Content";
 
-export default function Week({ week }) {
+const Week = ({ week }) => {
   const mainData = useContext(ContentContext).mainData;
   const setMainData = useContext(ContentContext).setMainData;
 
@@ -132,4 +132,6 @@ export default function Week({ week }) {
       ))}
     </tr>
   );
-}
+};
+
+export default Week;

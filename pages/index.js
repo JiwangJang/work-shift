@@ -4,7 +4,7 @@ import KakaoLoginButton from "../public/svg/KakaoLoginButton.svg";
 import NaverLoginButton from "../public/svg/NaverLoginButton.svg";
 import NotMemberLoginButton from "../public/svg/NotMemberLoginButton.svg";
 
-export default function LoginPage() {
+const LoginPage = () => {
   useEffect(() => {
     if (new URL(location.href).searchParams.get("error")) {
       alert("로그인을 하셔야 이용가능합니다");
@@ -62,4 +62,6 @@ export default function LoginPage() {
       </div>
     </div>
   );
-}
+};
+
+export default LoginPage;

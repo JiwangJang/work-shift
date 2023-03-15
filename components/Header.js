@@ -5,7 +5,7 @@ import LogoutIcon from "/public/image/Logout.png";
 import Contact from "/public/image/contact.png";
 import { signOut, useSession } from "next-auth/react";
 
-export default function Header() {
+const Header = () => {
   const [sidebarClick, setSidebarClick] = useState(true);
   const { data } = useSession();
   const userId = data?.user.id;
@@ -108,4 +108,6 @@ export default function Header() {
       </div>
     </div>
   );
-}
+};
+
+export default Header;
