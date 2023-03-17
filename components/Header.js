@@ -60,17 +60,9 @@ const Header = () => {
     resizable=no`;
 
     if (userId === "notMember") {
-      window.open(
-        "https://work-shift.vercel.app/NotMemberMannual",
-        "mannaul",
-        openOption
-      );
+      window.open(`/NotMemberMannual`, "mannaul", openOption);
     } else {
-      window.open(
-        "https://work-shift.vercel.app/MemberMannual",
-        "mannaul",
-        openOption
-      );
+      window.open(`/MemberMannual`, "mannaul", openOption);
     }
   };
 
