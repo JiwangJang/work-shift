@@ -22,7 +22,7 @@ const MannualLayout = ({ children }) => {
         className='px-10 h-1/10 rounded-xl border-none bg-yellow-300'
         title='그만보기'
       >
-        애를 누르면 이 창이 제거됩니다
+        더 이상 보시지 않으시려면 이 버튼을 눌러주세요
       </button>
     </div>
   );
