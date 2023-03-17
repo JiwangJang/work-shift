@@ -4,35 +4,35 @@
 
 @font-face {
   font-family: "small-title";
-  src: url("/public/font/small-title.TTF");
+  src: url("../public/font/small-title.TTF");
 }
 @font-face {
   font-family: "article";
-  src: url("/public/font/article.TTF");
+  src: url("../public/font/article.TTF");
 }
 @font-face {
   font-family: "calendertitle";
-  src: url("/public/font/calendertitle.TTF");
+  src: url("../public/font/calendertitle.ttf");
 }
 @font-face {
   font-family: "date";
-  src: url("/public/font/date.TTF");
+  src: url("../public/font/date.ttf");
 }
 @font-face {
   font-family: "workername";
-  src: url("/public/font/workername.ttf");
+  src: url("../public/font/workername.ttf");
 }
 @font-face {
   font-family: "loginPageTitle";
-  src: url("/public/font/loginPageTitle.ttf");
+  src: url("../public/font/loginPageTitle.ttf");
 }
 @font-face {
   font-family: "loginPageArticle";
-  src: url("/public/font/loginPageArticle.ttf");
+  src: url("../public/font/loginPageArticle.ttf");
 }
 @font-face {
   font-family: "popup";
-  src: url("/public/font/popup.ttf");
+  src: url("../public/font/popup.ttf");
 }
 
 * {
