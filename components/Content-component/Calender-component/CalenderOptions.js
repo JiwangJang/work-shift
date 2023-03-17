@@ -97,7 +97,7 @@ const CalenderOptions = () => {
   };
 
   const makeNewWorkShift = () => {
-    setMonthSelect(true);
+    setMonthSelect((prev) => !prev);
   };
 
   const monthInputEvent = (e) => {
@@ -145,12 +145,20 @@ const CalenderOptions = () => {
         엑셀로 다운받기
       </button>
       {monthSelect ? (
-        <input
-          type={"month"}
-          onInput={monthInputEvent}
-          className='monthinput cursor-pointer focus:border-none'
-          id='monthInput'
-        ></input>
+        <div className='monthinputContainer'>
+          <button
+            onClick={makeNewWorkShift}
+            className='text-3xl w-full Xmark flex items-center justify-end'
+          >
+            ☒
+          </button>
+          <input
+            type={"month"}
+            onInput={monthInputEvent}
+            className='monthinput cursor-pointer focus:border-none text-3xl'
+            id='monthInput'
+          ></input>
+        </div>
       ) : (
         <button
           className='CalenderOptionBtn'

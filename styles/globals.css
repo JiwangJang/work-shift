@@ -161,7 +161,21 @@ a {
 }
 
 .monthinput {
+  height: 80%;
+  width: 100%;
+  text-align: center;
+}
+
+.monthinputContainer {
+  width: 80%;
   height: 18%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Xmark {
+  font-size: 2.5rem;
 }
 
 @keyframes rightSlide {
