@@ -23,6 +23,7 @@ const Header = () => {
   };
 
   const SaveEvent = async (userId) => {
+    if (userId === "notMember") return alert("비회원은 저장이 제한됩니다");
     const data = {
       ...JSON.parse(localStorage.getItem("data")),
       recognize: JSON.parse(localStorage.getItem("memberRecognize")),

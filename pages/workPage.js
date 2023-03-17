@@ -34,11 +34,7 @@ const Home = ({ session, data }) => {
       const recognize = JSON.parse(localStorage.getItem("recognize"));
       //비회원 접속시
       if (!recognize) {
-        window.open(
-          `http://127.0.0.1:3000/NotMemberMannual`,
-          "mannaul",
-          openOption
-        );
+        window.open(`/NotMemberMannual`, "mannaul", openOption);
       }
     } else {
       const MemberRecognize = JSON.parse(
@@ -46,11 +42,7 @@ const Home = ({ session, data }) => {
       );
       //회원으로 접속시
       if (!MemberRecognize) {
-        window.open(
-          `http://127.0.0.1:3000/MemberMannual`,
-          "mannaul",
-          openOption
-        );
+        window.open(`/MemberMannual`, "mannaul", openOption);
       }
     }
 
