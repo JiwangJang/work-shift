@@ -60,9 +60,9 @@ const Header = () => {
     resizable=no`;
 
     if (userId === "notMember") {
-      window.open(`/NotMemberMannual`, "mannaul", openOption);
+      window.open("/NotMemberMannual", "mannaul", openOption);
     } else {
-      window.open(`/MemberMannual`, "mannaul", openOption);
+      window.open("/MemberMannual", "mannaul", openOption);
     }
   };
 
