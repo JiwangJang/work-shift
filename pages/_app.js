@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import { SessionProvider } from "next-auth/react";
 import Head from "next/head";
+import Script from "next/script";
 
 const App = ({ Component, pageProps }) => {
   return (
@@ -14,6 +15,25 @@ const App = ({ Component, pageProps }) => {
           sizes='16x16'
         ></link>
       </Head>
+      <Script
+        strategy='afterInteractive'
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GOOGLE_ANALYTICSID}}`}
+      />
+
+      <Script
+        id='google-analytics'
+        strategy='afterInteractive'
+        dangerouslySetInnerHTML={{
+          __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', ${process.env.GOOGLE_ANALYTICSID}, {
+          page_path: window.location.pathname,
+          });
+        `,
+        }}
+      ></Script>
       <SessionProvider session={pageProps.session} refetchWhenOffline={false}>
         <Component {...pageProps} />
       </SessionProvider>
