@@ -14,6 +14,10 @@ const App = ({ Component, pageProps }) => {
           type='image/x-icon'
           sizes='16x16'
         ></link>
+        <meta
+          name='google-site-verification'
+          content='_xBXEsyZiVne4Qy-DQmvMRagBaC2NBwbtyWlnvL0vOQ'
+        />
       </Head>
       <Script
         strategy='afterInteractive'
