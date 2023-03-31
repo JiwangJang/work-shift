@@ -12,6 +12,10 @@ const App = ({ Component, pageProps }) => {
           name='description'
           content='당직근무표를 간단하게 작성해주는 사이트!'
         />
+        <meta
+          name='keywords'
+          content='당직근무표, 근무표 자동화, 당직근무표 자동화'
+        />
         <link
           rel='icon'
           href='/image/favicon.ico'
