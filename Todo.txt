@@ -1,15 +1,4 @@
-[]Use caching wherever possible.
-[]Ensure your database and backend are deployed in the same region.
-[]Aim to ship the least amount of JavaScript possible.
-[]Defer loading heavy JavaScript bundles until needed.
-[v]Ensure logging is set up.
-[v]Ensure error handling is set up.
-[v]Configure the 404 (Not Found) and 500 (Error) pages.
-[]Ensure you are measuring performance.
-[]Run Lighthouse to check for performance, best practices, accessibility, and SEO. For best results, use a production build of Next.js and use incognito in your browser so results aren't affected by extensions.
-[]Review Supported Browsers and Features.
-[]Improve performance using:
-    next/image and Automatic Image Optimization
-    Automatic Font Optimization
-    Script Optimization
-[]Improve loading performance
+[] SEO위해서 메타태그 쓰기
+[] 나하고 소통할 수 있는 페이지 만들기
+[] 첫 페이지 다시만들어 보기
+[] 사용자의 Accept-Language에 맞춰서 언어 보여주기

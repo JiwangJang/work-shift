@@ -8,6 +8,10 @@ const App = ({ Component, pageProps }) => {
     <>
       <Head>
         <title>당직근무표 자동화앱</title>
+        <meta
+          name='description'
+          content='당직근무표를 간단하게 작성해주는 사이트!'
+        />
         <link
           rel='icon'
           href='/image/favicon.ico'
