@@ -1,10 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./app/**/*.{js,ts,jsx,tsx}",
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./app/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       height: {
@@ -26,9 +22,8 @@ module.exports = {
         calendertitle: ["calendertitle", "sans-serif"],
         date: ["date", "sans-serif"],
         workername: ["workername", "sans-serif"],
-        loginPageTitle: ["loginPageTitle", "sans-serif"],
-        loginPageArticle: ["loginPageArticle", "sans-serif"],
         popup: ["popup", "sans-serif"],
+        LoginPage: "LoginPage",
       },
       fontSize: {
         smalltitle: "2.5rem",
@@ -39,8 +34,9 @@ module.exports = {
       },
       colors: {
         kakao: "#FEE500",
-        naver: "",
+        naver: "#03C75A",
         kakaoFont: "#3F3B15",
+        google: "#757575",
       },
     },
   },
