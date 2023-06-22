@@ -1,6 +1,52 @@
-import Image from "next/image";
+"use client";
 
-const SignUp = () => {
+import axios from "axios";
+import { signIn } from "next-auth/react";
+import Image from "next/image";
+import { useRef } from "react";
+
+const SignUp = ({ LoginStateRef }) => {
+  const IdRef = useRef();
+  const PasswordRef = useRef();
+  const PasswordCheckerRef = useRef();
+  const SignUpButtonEvent = async () => {
+    const ID = IdRef.current.value.replace(/\s/g, "");
+    const Password = PasswordRef.current.value.replace(/\s/g, "");
+    const Checker = PasswordCheckerRef.current.value.replace(/\s/g, "");
+    const korean = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+    if (!ID || !Password || !Checker) return alert("모든칸을 입력해주세요");
+    if (korean.test(ID) || korean.test(Password))
+      return alert("영문과 숫자만 입력가능합니다");
+    if (ID.length > 30) return alert("30자 이하로 아이디를 입력해주세요");
+    if (Password !== Checker)
+      return alert(
+        "Password칸의 값과 PasswordChecker칸의 값이 일치하지 않습니다. 다시 확인해주세요"
+      );
+
+    LoginStateRef.current.innerText = "회원가입 작업중입니다";
+    LoginStateRef.current.classList.toggle("invisible");
+
+    // 회원가입 성공했을때 얼럿띄워주는거 되게하기..
+
+    try {
+      const res = await axios.post("/api/SignUp", {
+        ID,
+        Password,
+      });
+      console.log(res);
+      if (res.data.success) {
+        alert("회원가입 성공! 바로 작업페이지로 이동시켜드리겠습니다!");
+        signIn("credentials", { ID, Password });
+      } else {
+        alert(res.data.msg);
+        LoginStateRef.current.classList.toggle("invisible");
+      }
+    } catch (error) {
+      alert("서버쪽 에러발생! 잠시후 다시 시도해주십시오!");
+      LoginStateRef.current.classList.toggle("invisible");
+    }
+  };
+
   return (
     <div className='w-1/2 h-full flex flex-col items-center'>
       <div className='flex w-full justify-center'>
@@ -16,19 +62,25 @@ const SignUp = () => {
         <input
           type='text'
           placeholder='ID'
+          ref={IdRef}
           className='h-[70px] w-[85%] bg-gray-300 outline-none rounded-full pl-14 text-[30px]'
         />
         <input
           type='password'
           placeholder='Password'
+          ref={PasswordRef}
           className='h-[70px] w-[85%] bg-gray-300 outline-none rounded-full pl-14 text-[30px]'
         />
         <input
           type='password'
           placeholder='Password-Checker'
+          ref={PasswordCheckerRef}
           className='h-[70px] w-[85%] bg-gray-300 outline-none rounded-full pl-14 text-[30px]'
         />
-        <button className='w-[85%] h-[70px] text-[55px] bg-amber-300 hover:bg-amber-400 rounded-full '>
+        <button
+          className='w-[85%] h-[70px] text-[55px] bg-amber-300 hover:bg-amber-400 rounded-full'
+          onClick={SignUpButtonEvent}
+        >
           회원가입
         </button>
       </div>

@@ -1,9 +1,13 @@
 "use client";
+import { useRef } from "react";
 import Login from "./Login";
 import Page from "./Page";
 import SignUp from "./SignUp";
+import StateIndicator from "./StateIndicator";
 
 const LoginPage = () => {
+  const LoginStateRef = useRef();
+
   return (
     <div className='snap-y snap-mandatory overflow-auto h-full w-full font-LoginPage text-9xl max-[1350px]:text-[90px]'>
       <Page
@@ -39,8 +43,9 @@ const LoginPage = () => {
             당직근무표 자동화웹
           </div>
           <div className='flex h-4/5'>
-            <Login />
-            <SignUp />
+            <StateIndicator Childref={LoginStateRef} />
+            <Login LoginStateRef={LoginStateRef} />
+            <SignUp LoginStateRef={LoginStateRef} />
           </div>
         </div>
       </div>

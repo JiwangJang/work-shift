@@ -1,6 +1,24 @@
-import Image from "next/image";
+"use client";
 
-const Login = () => {
+import { signIn } from "next-auth/react";
+import Image from "next/image";
+import { useRef } from "react";
+
+const Login = ({ LoginStateRef }) => {
+  const IdRef = useRef();
+  const PasswordRef = useRef();
+
+  const LoginButtonEvent = () => {
+    const ID = IdRef.current.value;
+    const Password = PasswordRef.current.value;
+
+    if (!ID || !Password) return alert("둘다 입력해주세요");
+    LoginStateRef.current.innerText = "로그인 작업중입니다";
+    LoginStateRef.current.classList.toggle("invisible");
+
+    signIn("credentials", { ID, Password });
+  };
+
   return (
     <div className='w-1/2 h-full'>
       <div className='flex w-full justify-center'>
@@ -17,14 +35,19 @@ const Login = () => {
         <input
           type='text'
           placeholder='ID'
+          ref={IdRef}
           className='h-[70px] w-[85%] bg-gray-300 outline-none rounded-full pl-14 text-[30px]'
         />
         <input
           type='password'
           placeholder='Password'
+          ref={PasswordRef}
           className='h-[70px] w-[85%] bg-gray-300 outline-none rounded-full pl-14 text-[30px]'
         />
-        <button className='w-[85%] h-[70px] text-[55px] bg-amber-300 hover:bg-amber-400 rounded-full '>
+        <button
+          className='w-[85%] h-[70px] text-[55px] bg-amber-300 hover:bg-amber-400 rounded-full'
+          onClick={LoginButtonEvent}
+        >
           로그인
         </button>
       </div>
