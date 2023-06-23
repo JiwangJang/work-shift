@@ -16,7 +16,11 @@ const Login = ({ LoginStateRef }) => {
     LoginStateRef.current.innerText = "로그인 작업중입니다";
     LoginStateRef.current.classList.toggle("invisible");
 
-    signIn("credentials", { ID, Password });
+    signIn("credentials", {
+      ID,
+      Password,
+      callbackUrl: `${window.location.origin}/shift-calender`,
+    });
   };
 
   return (
@@ -64,6 +68,11 @@ const Login = ({ LoginStateRef }) => {
           alt='NAVER-Login-Button'
           width={530}
           height={70}
+          onClick={() =>
+            signIn("naver", {
+              callbackUrl: `${window.location.origin}/shift-calender`,
+            })
+          }
         />
         <Image
           className='w-4/5 rounded-full shadow-xl cursor-pointer hover:shadow-kakao transition-all'
@@ -71,13 +80,23 @@ const Login = ({ LoginStateRef }) => {
           alt='KAKAO-Login-Button'
           width={530}
           height={70}
+          onClick={() =>
+            signIn("kakao", {
+              callbackUrl: `${window.location.origin}/shift-calender`,
+            })
+          }
         />
         <Image
           className='w-4/5 rounded-full shadow-xl cursor-pointer hover:shadow-google transition-all'
           src={"/svg/GOOGLE.svg"}
-          alt='KAKAO-Login-Button'
+          alt='GOOGLE-Login-Button'
           width={530}
           height={70}
+          onClick={() =>
+            signIn("google", {
+              callbackUrl: `${window.location.origin}/shift-calender`,
+            })
+          }
         />
       </div>
     </div>

@@ -9,7 +9,7 @@ const SignUp = ({ LoginStateRef }) => {
   const IdRef = useRef();
   const PasswordRef = useRef();
   const PasswordCheckerRef = useRef();
-  const SignUpButtonEvent = async () => {
+  const SignUpButtonEvent = () => {
     const ID = IdRef.current.value.replace(/\s/g, "");
     const Password = PasswordRef.current.value.replace(/\s/g, "");
     const Checker = PasswordCheckerRef.current.value.replace(/\s/g, "");
@@ -28,23 +28,32 @@ const SignUp = ({ LoginStateRef }) => {
 
     // 회원가입 성공했을때 얼럿띄워주는거 되게하기..
 
-    try {
-      const res = await axios.post("/api/SignUp", {
+    axios
+      .post("/api/SignUp", {
         ID,
         Password,
-      });
-      console.log(res);
-      if (res.data.success) {
-        alert("회원가입 성공! 바로 작업페이지로 이동시켜드리겠습니다!");
-        signIn("credentials", { ID, Password });
-      } else {
-        alert(res.data.msg);
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.data.success) {
+          alert("회원가입 성공! 바로 작업페이지로 이동시켜드리겠습니다!");
+          signIn("credentials", { ID, Password });
+        } else {
+          switch (res.data.msg) {
+            case "IdOverlap":
+              alert("아이디가 중복됩니다");
+              break;
+            case "ServerError":
+              alert("서버에서 에러가 발생했습니다. 잠시후 다시 시도해주세요");
+              break;
+          }
+          LoginStateRef.current.classList.toggle("invisible");
+        }
+      })
+      .catch(() => {
+        alert("서버쪽 에러발생! 잠시후 다시 시도해주십시오!");
         LoginStateRef.current.classList.toggle("invisible");
-      }
-    } catch (error) {
-      alert("서버쪽 에러발생! 잠시후 다시 시도해주십시오!");
-      LoginStateRef.current.classList.toggle("invisible");
-    }
+      });
   };
 
   return (
@@ -56,7 +65,7 @@ const SignUp = ({ LoginStateRef }) => {
           width={100}
           height={100}
         />
-        <p className='text-[50px] flex items-center'>아직 회원이 아니라구요?</p>
+        <p className='text-[50px] flex items-center'>아직 회원이 아니십니까?</p>
       </div>
       <div className='flex flex-col gap-4 items-center mt-5 w-full border-b-2 pb-4'>
         <input
