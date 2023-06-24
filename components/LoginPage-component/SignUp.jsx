@@ -60,34 +60,35 @@ const SignUp = ({ LoginStateRef }) => {
     <div className='w-1/2 h-full flex flex-col items-center'>
       <div className='flex w-full justify-center'>
         <Image
+          className='mr-5 max-[1350px]:h-[80px]'
           src={"/svg/sign-up.svg"}
           alt='sign-up-icon'
           width={100}
           height={100}
         />
-        <p className='text-[50px] flex items-center'>아직 회원이 아니십니까?</p>
+        <p className='text-[60px] flex items-center'>Sign Up</p>
       </div>
       <div className='flex flex-col gap-4 items-center mt-5 w-full border-b-2 pb-4'>
         <input
           type='text'
           placeholder='ID'
           ref={IdRef}
-          className='h-[70px] w-[85%] bg-gray-300 outline-none rounded-full pl-14 text-[30px]'
+          className='h-[70px] w-[85%] bg-gray-300 outline-none rounded-full pl-14 text-[30px] max-[1200px]:text-[25px]'
         />
         <input
           type='password'
           placeholder='Password'
           ref={PasswordRef}
-          className='h-[70px] w-[85%] bg-gray-300 outline-none rounded-full pl-14 text-[30px]'
+          className='h-[70px] w-[85%] bg-gray-300 outline-none rounded-full pl-14 text-[30px] max-[1200px]:text-[25px]'
         />
         <input
           type='password'
           placeholder='Password-Checker'
           ref={PasswordCheckerRef}
-          className='h-[70px] w-[85%] bg-gray-300 outline-none rounded-full pl-14 text-[30px]'
+          className='h-[70px] w-[85%] bg-gray-300 outline-none rounded-full pl-14 text-[30px] max-[1200px]:text-[25px]'
         />
         <button
-          className='w-[85%] h-[70px] text-[55px] bg-amber-300 hover:bg-amber-400 rounded-full'
+          className='w-[85%] h-[70px] text-[55px] max-[1200px]:text-[45px] bg-amber-300 hover:bg-amber-400 rounded-full'
           onClick={SignUpButtonEvent}
         >
           회원가입

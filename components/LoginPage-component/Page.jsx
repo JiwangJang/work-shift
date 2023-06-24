@@ -14,11 +14,14 @@ const Page = ({ imgSrc, ment, color }) => {
         src={imgSrc}
         width={400}
         height={400}
+        id='firstPage-Image'
         onClick={() => {
           window.open(imgSrc);
         }}
       />
-      <p className='w-[1175px]'>{ment}</p>
+      <p className='w-[1175px]' id='firstPage-ment'>
+        {ment}
+      </p>
     </div>
   );
 };
