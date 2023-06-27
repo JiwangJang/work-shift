@@ -1,12 +1,35 @@
 "use client";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import Login from "./Login";
 import Page from "./Page";
 import SignUp from "./SignUp";
 import StateIndicator from "./StateIndicator";
+import { useSession } from "next-auth/react";
 
 const LoginPage = () => {
+  const router = useRouter();
   const LoginStateRef = useRef();
+  const { data: session } = useSession();
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const curError = params.get("error");
+
+    if (curError) {
+      switch (curError) {
+        case "notMember":
+          alert("회원가입부터 해주세요");
+          break;
+        default:
+          alert("서버에서 문제가 발생했습니다. 잠시후 다시 시도해주세요.");
+          break;
+      }
+      router.push("/");
+    }
+    if (session) {
+      router.push("/shift-calender");
+    }
+  }, [router, session]);
 
   return (
     <div className='snap-y snap-mandatory overflow-auto h-full w-full font-LoginPage text-9xl max-[1350px]:text-[90px]'>

@@ -24,7 +24,7 @@
 }
 @font-face {
   font-family: "popup";
-  src: url("../public/font/popup.ttf");
+  src: url("../public/font/KOTRA.ttf");
 }
 @font-face {
   font-family: "LoginPage";
@@ -145,9 +145,6 @@ a {
   height: 18%;
   background-color: rgb(253 224 71);
   border-radius: 20px;
-  font-family: "article";
-  font-size: xx-large;
-  font-weight: bold;
   transition: all 0.3s ease-in-out;
 }
 

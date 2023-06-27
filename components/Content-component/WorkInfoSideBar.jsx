@@ -1,3 +1,5 @@
+"use client";
+
 import Register from "./WorkInfoSideBar-component/Register";
 import List from "./WorkInfoSideBar-component/List";
 import Order from "./WorkInfoSideBar-component/Order";

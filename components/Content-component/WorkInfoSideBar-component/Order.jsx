@@ -1,24 +1,22 @@
-import {
-  useContext,
-  useEffect,
-  useState,
-  useRef,
-  useCallback,
-  useMemo,
-} from "react";
-import { ContentContext } from "../../Content.js";
+import { useContext, useRef, useCallback, useMemo } from "react";
+import { ContentContext } from "../../Content";
 import CalenderDataMaker from "@/libs/CalenderDataMaker.js";
 
 const Order = () => {
-  const [result, setResult] = useState(
-    <div className='h-1/3'>
-      <h2>로딩중</h2>
-    </div>
-  );
   const orderId = useRef(0);
   const mainData = useContext(ContentContext).mainData;
   const setMainData = useContext(ContentContext).setMainData;
   const WorkOrder = useMemo(() => [...mainData.WorkOrder], [mainData]);
+  Array.prototype.arrayIndexOf = function (array) {
+    const arrayfy = array.split(", ");
+    let result;
+    for (let i = 0; i < this.length; i++) {
+      if (JSON.stringify(this[i]) === JSON.stringify(arrayfy)) {
+        result = i;
+      }
+    }
+    return result;
+  };
 
   //앞 순서로 옮길때 발생하는 이벤트
   const upEvent = useCallback(
@@ -107,35 +105,28 @@ const Order = () => {
     [setMainData, WorkOrder]
   );
 
-  useEffect(() => {
-    setResult(
-      <div className='h-1/3'>
-        <div className='h-1/5 flex justify-center items-center font-smallTitle text-smalltitle'>
-          근무 순서
-        </div>
-        <div className='h-4/5 font-article text-lg font-extrabold overflow-y-auto scroll-design'>
-          {WorkOrder.map((team) => {
-            orderId.current += 1;
-            return (
-              <div
-                key={orderId.current}
-                className='grid grid-cols-2fr-1fr mb-3'
-              >
-                <div>{team.join(", ")}</div>
-                <div className='flex justify-center'>
-                  <button onClick={upEvent}>▲</button>
-                  <button onClick={downEvent}>▼</button>
-                  <button onClick={removeEvent}>⨉</button>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+  return (
+    <div className='h-1/3'>
+      <div className='h-1/5 flex justify-center items-center font-smallTitle text-smalltitle  max-[1020px]:text-[30px]'>
+        근무 순서
       </div>
-    );
-  }, [mainData, WorkOrder, upEvent, downEvent, removeEvent]);
-
-  return <>{result}</>;
+      <div className='h-4/5 font-article text-lg font-extrabold overflow-y-auto scroll-design'>
+        {WorkOrder.map((team) => {
+          orderId.current += 1;
+          return (
+            <div key={orderId.current} className='grid grid-cols-2fr-1fr mb-3'>
+              <div className='pl-4'>{team.join(", ")}</div>
+              <div className='flex justify-center'>
+                <button onClick={upEvent}>▲</button>
+                <button onClick={downEvent}>▼</button>
+                <button onClick={removeEvent}>⨉</button>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
 };
 
 export default Order;

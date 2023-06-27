@@ -26,8 +26,6 @@ const SignUp = ({ LoginStateRef }) => {
     LoginStateRef.current.innerText = "회원가입 작업중입니다";
     LoginStateRef.current.classList.toggle("invisible");
 
-    // 회원가입 성공했을때 얼럿띄워주는거 되게하기..
-
     axios
       .post("/api/SignUp", {
         ID,

@@ -5,6 +5,7 @@ import Naver from "next-auth/providers/naver";
 import Google from "next-auth/providers/naver";
 import db from "@/libs/dbConfig";
 import bcrypt from "bcrypt";
+import uuid from "@/libs/uuid";
 
 const providers = [
   Kakao({
@@ -35,18 +36,36 @@ const providers = [
       if (!bcrypt.compareSync(Password, UserInfo[isUser].password)) {
         throw new Error("checkPassword");
       }
-      return { userid: ID };
+      return { id: ID };
     },
   }),
 ];
 
 const callbacks = {
   async signIn({ user, account, profile, email, credentials }) {
-    console.log("callbacks user", user);
-    console.log("callbacks account", account);
-    console.log("callbacks profile", profile);
-    console.log("callbacks email", email);
-    console.log("callbacks credentials", credentials);
+    // console.log("callbacks user", user);
+    // console.log("callbacks account", account);
+    // console.log("callbacks profile", profile);
+    // console.log("callbacks email", email);
+    // console.log("callbacks credentials", credentials);
+    try {
+      if (account.provider !== "credentials") {
+        const [curUser] = await db.execute(
+          "SELECT * FROM userinfo WHERE id=?;",
+          [user.id]
+        );
+        if (curUser[0] === undefined) {
+          const password = bcrypt.hashSync(uuid(), 12);
+          await db.execute("INSERT INTO userinfo(id, password) VALUE (?, ?);", [
+            user.id,
+            password,
+          ]);
+        }
+      }
+    } catch (error) {
+      return "/?error=ServerError";
+    }
+
     if (user) {
       return true;
     } else {
@@ -54,21 +73,21 @@ const callbacks = {
     }
   },
   async jwt({ token, user }) {
-    console.log("jwt user", user);
-    console.log("jwt token", token);
+    // console.log("jwt user", user);
+    // console.log("jwt token", token);
     if (user) {
-      token.userid = user.userid;
+      token.userid = user.id;
     }
     return token;
   },
   async session({ session, token, user }) {
-    console.log("session session, token, user", session, token, user);
+    // console.log("session session, token, user", session, token, user);
     session.userid = token.userid;
     return session;
   },
 };
 
-const handler = NextAuth({
+export const authOptions = {
   providers,
   session: {
     maxAge: 120 * 60,
@@ -79,6 +98,8 @@ const handler = NextAuth({
     error: "/",
   },
   callbacks,
-});
+};
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

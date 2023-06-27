@@ -9,7 +9,7 @@ const Inputs = ({ count }) => {
         <input
           type='text'
           key={input}
-          className='rounded-full w-3/4 inputs mb-2 h-registerInput shrink-0 text-lg text-center'
+          className='rounded-full w-3/4 inputs mb-2 h-registerInput shrink-0 text-lg text-center font-article font-extrabold'
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               document.querySelector(".submit").click();
@@ -39,7 +39,6 @@ const Buttons = ({ inputCount, setInputCount }) => {
   };
 
   const register = () => {
-    // debugger;
     const inputs = Array.from(document.querySelectorAll(".inputs"));
     const inputValues = inputs.map((input) => String(input.value));
     const newWorkTeam = Array.from(new Set(inputValues));
@@ -95,7 +94,7 @@ const Register = () => {
 
   return (
     <div className='h-1/3 Register'>
-      <div className='h-1/5 flex justify-center items-center font-smallTitle text-smalltitle'>
+      <div className='h-1/5 flex justify-center items-center font-smallTitle text-smalltitle max-[1020px]:text-[30px] transition-all'>
         근무자 입력
       </div>
       <Inputs count={inputCount} />
