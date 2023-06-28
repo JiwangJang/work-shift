@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 const POST = async (req) => {
   const data = await req.json();
   const userid = req.nextUrl.searchParams.get("userid");
-  console.log(data);
 
   try {
     await db.execute("REPLACE INTO userdata(userid, data) VALUES(?, ?);", [

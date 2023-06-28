@@ -18,7 +18,10 @@ const LoginPage = () => {
     if (curError) {
       switch (curError) {
         case "notMember":
-          alert("회원가입부터 해주세요");
+          alert("등록되지 않은 사용자입니다");
+          break;
+        case "checkPassword":
+          alert("비밀번호를 확인해주세요");
           break;
         default:
           alert("서버에서 문제가 발생했습니다. 잠시후 다시 시도해주세요.");
