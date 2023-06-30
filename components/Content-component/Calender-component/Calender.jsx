@@ -14,6 +14,3 @@ const Calender = () => {
 };
 
 export default Calender;
-
-// 여기서 mode라는 props 에 따라서 데이터를 어떻게 가져올지 결정
-//  이것만 렌더링하면 됨(조회만 할거니까)

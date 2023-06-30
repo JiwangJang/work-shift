@@ -9,10 +9,10 @@ const Page = () => {
 
   return (
     <div className='w-full h-full border-slate-300 border-2 font-calendertitle'>
-      <div className='h-1/5 bg-slate-300 flex justify-center items-center text-[70px]'>
+      <div className='h-[15%] bg-slate-300 flex justify-center items-center text-[70px]'>
         쓰시기 전에!!
       </div>
-      <div className='h-[70%] flex flex-col text-[28px] p-4 overflow-y-auto'>
+      <div className='h-[75%] flex flex-col text-[28px] p-4 overflow-y-auto'>
         <p>
           페이지를 닫기전에 꼭 우측상단의 저장버튼을 <br /> 눌러주세요!!
         </p>

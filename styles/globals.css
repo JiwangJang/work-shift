@@ -218,3 +218,7 @@ a {
   width: 43%;
   display: block;
 }
+
+.pw-revise {
+  grid-template-columns: 15% 85%;
+}

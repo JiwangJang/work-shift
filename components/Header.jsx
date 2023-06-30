@@ -50,6 +50,13 @@ const Header = ({ userid }) => {
     signOut({ callbackUrl: `/` });
   };
 
+  const UserInfoPage = () => {
+    const top = document.body.offsetWidth / 2 - 390;
+    const left = window.screen.height / 2 - 222.5;
+    const specs = `height=780, width=445, top=${top}, left=${left}`;
+    window.open(`/user/${userid}`, "", specs);
+  };
+
   return (
     <div className='h-header bg-blue-200 flex justify-between select-none'>
       <span
@@ -59,6 +66,15 @@ const Header = ({ userid }) => {
         {sidebarClick ? "☒" : "▶"}
       </span>
       <div className='flex mr-4'>
+        <Image
+          alt='UserInfo'
+          src='svg/user.svg'
+          width={60}
+          height={60}
+          onClick={UserInfoPage}
+          className='cursor-pointer hover:bg-blue-300 transition-all'
+          title='사용자정보'
+        />
         <Image
           alt='Logout'
           src={LogoutIcon}
