@@ -1,6 +1,7 @@
 // Current route is api/SignUp
 
 import db from "@/libs/dbConfig";
+import randomCharGenerator from "@/libs/randomChar";
 import bcrypt from "bcrypt";
 import { NextResponse } from "next/server";
 
@@ -12,10 +13,11 @@ const POST = async (req) => {
     if (UserIdList.map((DataPacket) => DataPacket.userid).indexOf(ID) !== -1)
       throw "overlap";
     const bcryptedPw = bcrypt.hashSync(Password, 12);
-    await db.execute("INSERT INTO userinfo(id, password) VALUE(?, ?)", [
-      ID,
-      bcryptedPw,
-    ]);
+    const shareCode = randomCharGenerator();
+    await db.execute(
+      "INSERT INTO userinfo(id, password, sharecode) VALUE(?, ?, ?)",
+      [ID, bcryptedPw, shareCode]
+    );
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error(error);

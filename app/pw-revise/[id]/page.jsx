@@ -30,7 +30,6 @@ const Page = async ({ params }) => {
         비밀번호 수정
       </div>
       <PwRevise mode={"account"} id={session.userid} />
-      <PwRevise mode={"share"} id={session.userid} />
       <Spinner />
     </div>
   );

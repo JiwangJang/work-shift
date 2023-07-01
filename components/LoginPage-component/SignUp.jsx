@@ -84,6 +84,9 @@ const SignUp = ({ LoginStateRef }) => {
           placeholder='Password-Checker'
           ref={PasswordCheckerRef}
           className='h-[70px] w-[85%] bg-gray-300 outline-none rounded-full pl-14 text-[30px] max-[1200px]:text-[25px]'
+          onKeyDown={(e) => {
+            if (e.key === "Enter") SignUpButtonEvent();
+          }}
         />
         <button
           className='w-[85%] h-[70px] text-[55px] max-[1200px]:text-[45px] bg-amber-300 hover:bg-amber-400 rounded-full'
@@ -115,6 +118,11 @@ const SignUp = ({ LoginStateRef }) => {
             width={90}
             height={90}
             className='cursor-pointer hover:w-[110px] transition-all'
+            onClick={() =>
+              window.navigator.clipboard
+                .writeText(`${window.location.origin}`)
+                .then(alert("주위친구들에게 공유해주세요!!"))
+            }
           />
         </div>
       </div>

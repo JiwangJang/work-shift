@@ -38,23 +38,20 @@ const PwRevise = ({ mode, id }) => {
 
     try {
       const result = await axios.post("/api/pw-revise", data);
-      console.log(result);
       if (result.data.success) {
         alert("변경완료");
       } else {
         alert(result.data.msg);
       }
     } catch (error) {
-      console.log(error);
+      alert("서버에서 에러가 발생했습니다. 잠시후 다시시도해주세요.");
     }
     spinner.classList.toggle("invisible");
   };
 
   return (
     <div className='flex flex-col gap-3 w-full items-center mt-5'>
-      <p className='text-[35px]'>
-        {mode === "account" ? "계정비밀번호 수정" : "공유비밀번호 수정"}
-      </p>
+      <p className='text-[35px]'>계정비밀번호 수정</p>
       <div className='grid items-center pw-revise w-[368px] gap-3'>
         <p className='text-[25px] flex items-center justify-end w-full'>현재</p>
         <input

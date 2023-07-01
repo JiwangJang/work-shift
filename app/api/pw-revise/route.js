@@ -8,9 +8,19 @@ const POST = async (req) => {
   const data = await req.json();
   const session = await getServerSession(authOptions);
 
-  const { CurrentPw, FuturePw, id, mode } = data;
+  const { CurrentPw = null, FuturePw, id, mode } = data;
+  // 사용자가 처음 공유비밀번호를 등록할땐 현재비밀번호가 맞는지 확인할 필요가 없음
 
   if (session.userid !== id) throw "본인것만 변경가능합니다";
+
+  if (mode === "first") {
+    const HashedFuturePw = await bcrypt.hash(FuturePw, 12);
+    await db.execute(`UPDATE userinfo SET sharepassword=? WHERE id=?;`, [
+      HashedFuturePw,
+      id,
+    ]);
+    return NextResponse.json({ success: true });
+  }
 
   try {
     const [originPW] = await db.execute(

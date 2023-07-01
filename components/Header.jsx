@@ -54,7 +54,30 @@ const Header = ({ userid }) => {
     const top = document.body.offsetWidth / 2 - 390;
     const left = window.screen.height / 2 - 222.5;
     const specs = `height=780, width=445, top=${top}, left=${left}`;
-    window.open(`/user/${userid}`, "", specs);
+    window.open(`/pw-revise/${userid}`, "", specs);
+  };
+
+  const ShareEvent = async () => {
+    const result = await axios.get(`/api/share-pw-checker/${userid}`);
+    if (result.data.is0000) {
+      const sharepw = prompt(
+        "공유비밀번호를 입력해주세요(입력하시지 않으시면 기본값인 0000으로 공유됩니다.)"
+      );
+      if (sharepw) {
+        const result = await axios.post("/api/pw-revise", {
+          FuturePw: sharepw,
+          id: userid,
+          mode: "first",
+        });
+        if (!result.data.success)
+          return alert(
+            "서버에서 오류가 발생하여 잠시후 다시시도해주시기 바랍니다."
+          );
+      }
+    }
+    window.navigator.clipboard
+      .writeText(`${window.location.origin}/read/${userid}`)
+      .then(alert("공유링크가 복사됐습니다!"));
   };
 
   return (
@@ -66,6 +89,15 @@ const Header = ({ userid }) => {
         {sidebarClick ? "☒" : "▶"}
       </span>
       <div className='flex mr-4'>
+        <Image
+          alt='Share'
+          src='svg/share.svg'
+          width={60}
+          height={60}
+          onClick={() => ShareEvent()}
+          className='cursor-pointer hover:bg-blue-300 transition-all'
+          title='다른사람에게 근무표 공유하기'
+        />
         <Image
           alt='UserInfo'
           src='svg/user.svg'

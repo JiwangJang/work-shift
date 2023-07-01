@@ -6,6 +6,7 @@ import Google from "next-auth/providers/naver";
 import db from "@/libs/dbConfig";
 import bcrypt from "bcrypt";
 import uuid from "@/libs/uuid";
+import randomCharGenerator from "@/libs/randomChar";
 
 const providers = [
   Kakao({
@@ -56,10 +57,11 @@ const callbacks = {
         );
         if (curUser[0] === undefined) {
           const password = bcrypt.hashSync(uuid(), 12);
-          await db.execute("INSERT INTO userinfo(id, password) VALUE (?, ?);", [
-            user.id,
-            password,
-          ]);
+          const shareCode = randomCharGenerator();
+          await db.execute(
+            "INSERT INTO userinfo(id, password, sharecode) VALUE (?, ?, ?);",
+            [user.id, password, shareCode]
+          );
         }
       }
     } catch (error) {
