@@ -108,6 +108,16 @@ const SignUp = ({ LoginStateRef }) => {
             width={90}
             height={90}
             className='cursor-pointer hover:w-[110px] transition-all'
+            onClick={() => {
+              const top = document.body.offsetWidth / 2 - 350;
+              const left = window.screen.height / 2 - 300;
+              const specs = `height=700, width=600, top=${top}, left=${left}`;
+              window.open(
+                `http://www.facebook.com/sharer.php?u=https://work-shift.vercel.app/`,
+                "",
+                specs
+              );
+            }}
           />
           <Image
             src={"/svg/Twitter.svg"}
@@ -115,6 +125,14 @@ const SignUp = ({ LoginStateRef }) => {
             width={90}
             height={90}
             className='cursor-pointer hover:w-[110px] transition-all'
+            onClick={() => {
+              const url = `https://work-shift.vercel.app/`;
+              const text = "이제는 엑셀 대신 이걸로 당직근무표를 작성하세요!";
+              const hashtags = "당직근무표, 업무자동화, 자동화, 엑셀";
+              window.open(
+                `https://twitter.com/intent/tweet?url=${url}&text=${text}&hashtags=${hashtags}`
+              );
+            }}
           />
           <Image
             src={"/svg/URL.svg"}
