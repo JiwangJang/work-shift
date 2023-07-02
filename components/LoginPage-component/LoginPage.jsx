@@ -66,7 +66,7 @@ const LoginPage = () => {
         top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2'
         >
           <div className='h-1/5 flex items-center justify-center border-b-2 text-[110px] max-[1500px]:text-[100px] max-[1400px]:text-[85px] max-[1150px]:text-[65px]'>
-            당직근무표 자동화웹
+            당직근무표 자동작성기
           </div>
           <div className='flex h-4/5'>
             <StateIndicator Childref={LoginStateRef} />
