@@ -5,15 +5,12 @@ import { getServerSession } from "next-auth";
 
 const POST = async (req) => {
   const data = await req.json();
-  const userid = req.nextUrl.searchParams.get("userid");
   const session = await getServerSession(authOptions);
-
-  if (userid !== session.userid) throw "본인것만 저장가능합니다";
-
+  const { userid } = session;
   try {
-    await db.execute("REPLACE INTO userdata(userid, data) VALUES(?, ?);", [
+    await db.execute("UPDATE userdata SET data=? WHERE userid=?;", [
+      data.data,
       userid,
-      data,
     ]);
     return NextResponse.json({ success: true });
   } catch (error) {

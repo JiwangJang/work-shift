@@ -2,7 +2,7 @@ import uuid from "@/libs/uuid";
 import { useContext } from "react";
 import { ContentContext } from "@/components/Content";
 
-const Week = ({ week }) => {
+const WorkWeek = ({ week }) => {
   const mainData = useContext(ContentContext).mainData;
   const setMainData = useContext(ContentContext).setMainData;
 
@@ -122,7 +122,7 @@ const Week = ({ week }) => {
               <div
                 key={uuid()}
                 onClick={changeEvent}
-                className={`w-full h-full flex justify-center items-center cursor-pointer ${worker} hover:bg-yellow-200`}
+                className={`w-full h-full flex justify-center items-center cursor-pointer ${worker} hover:bg-yellow-200 transition-all duration-[250ms]`}
               >
                 {worker}
               </div>
@@ -134,6 +134,6 @@ const Week = ({ week }) => {
   );
 };
 
-export default Week;
+export default WorkWeek;
 
 // 조회용일경우 클릭하면 하이라이팅 해주기

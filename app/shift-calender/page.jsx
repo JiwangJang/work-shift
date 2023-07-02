@@ -11,7 +11,7 @@ const getUserData = async (userid) => {
     "SELECT data from userdata WHERE userid=?;",
     [userid]
   );
-  return userData[0]?.data.data ?? DataMaker();
+  return userData[0]?.data ?? DataMaker();
 };
 
 const ShiftCalender = async () => {

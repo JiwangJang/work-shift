@@ -91,22 +91,14 @@ const List = () => {
     [setMainData, originWorkOrder, originWorkerList]
   );
 
-  const onMouseOverEvent = useCallback((e) => {
+  const HighlightEvent = useCallback((e) => {
     const targetWorker = String(e.target.innerText);
     Array.from(document.getElementsByClassName(`${targetWorker}`)).forEach(
       (element) => {
-        element.classList.add("myWorkDayChecker");
+        element.classList.toggle("myWorkDayChecker");
       }
     );
-  }, []);
-
-  const onMouseOutEvent = useCallback((e) => {
-    const targetWorker = e.target.innerText;
-    Array.from(document.getElementsByClassName(`${targetWorker}`)).forEach(
-      (element) => {
-        element.classList.remove("myWorkDayChecker");
-      }
-    );
+    e.target.classList.toggle("bg-slate-300");
   }, []);
 
   return (
@@ -121,9 +113,8 @@ const List = () => {
             className='grid grid-cols-2fr-1fr-1fr w-full h-full place-items-center'
           >
             <span
-              onMouseOver={onMouseOverEvent}
-              onMouseOut={onMouseOutEvent}
-              className='w-full h-full flex justify-center items-center hover:bg-slate-300'
+              onClick={HighlightEvent}
+              className='w-full h-full flex justify-center items-center hover:bg-slate-300 cursor-pointer'
             >
               {worker}
             </span>

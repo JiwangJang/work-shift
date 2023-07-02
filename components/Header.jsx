@@ -8,7 +8,7 @@ import { signOut } from "next-auth/react";
 import axios from "axios";
 import Spinner from "./Header-component/spinner";
 
-const Header = ({ userid }) => {
+const Header = () => {
   const [sidebarClick, setSidebarClick] = useState(true);
   const SpinnerRef = useRef();
   const sideBarEvent = () => {
@@ -23,14 +23,14 @@ const Header = ({ userid }) => {
     setSidebarClick(!sidebarClick);
   };
 
-  const SaveEvent = async (userid) => {
+  const SaveEvent = async () => {
     const Spinner = SpinnerRef.current;
     const SpinnerChildren = Spinner.firstChild.children;
     Spinner.classList.toggle("invisible");
     SpinnerChildren[1].innerText = "저장중";
     const data = JSON.parse(localStorage.getItem("data"));
     try {
-      const result = await axios.post(`/api/save?userid=${userid}`, { data });
+      const result = await axios.post(`/api/save`, { data });
       if (result.data.success) alert("저장 성공!");
       else
         alert(
@@ -54,30 +54,18 @@ const Header = ({ userid }) => {
     const top = document.body.offsetWidth / 2 - 390;
     const left = window.screen.height / 2 - 222.5;
     const specs = `height=780, width=445, top=${top}, left=${left}`;
-    window.open(`/pw-revise/${userid}`, "", specs);
+    window.open(`/pw-revise`, "", specs);
   };
 
   const ShareEvent = async () => {
-    const result = await axios.get(`/api/share-pw-checker/${userid}`);
-    if (result.data.is0000) {
-      const sharepw = prompt(
-        "공유비밀번호를 입력해주세요(입력하시지 않으시면 기본값인 0000으로 공유됩니다.)"
-      );
-      if (sharepw) {
-        const result = await axios.post("/api/pw-revise", {
-          FuturePw: sharepw,
-          id: userid,
-          mode: "first",
-        });
-        if (!result.data.success)
-          return alert(
-            "서버에서 오류가 발생하여 잠시후 다시시도해주시기 바랍니다."
-          );
-      }
+    const result = await axios.get(`/api/code`);
+    if (result.data.sharecode) {
+      window.navigator.clipboard
+        .writeText(`${window.location.origin}/read/${result.data.sharecode}`)
+        .then(alert("공유링크가 복사됐습니다!"));
+    } else {
+      alert("서버에서 에러가 발생헀습니다. 잠시후 다시 시도해주세요");
     }
-    window.navigator.clipboard
-      .writeText(`${window.location.origin}/read/${userid}`)
-      .then(alert("공유링크가 복사됐습니다!"));
   };
 
   return (
@@ -94,7 +82,7 @@ const Header = ({ userid }) => {
           src='svg/share.svg'
           width={60}
           height={60}
-          onClick={() => ShareEvent()}
+          onClick={ShareEvent}
           className='cursor-pointer hover:bg-blue-300 transition-all'
           title='다른사람에게 근무표 공유하기'
         />
@@ -121,7 +109,7 @@ const Header = ({ userid }) => {
           src={saveIcon}
           width={50}
           height={90}
-          onClick={() => SaveEvent(userid)}
+          onClick={SaveEvent}
           className='cursor-pointer hover:bg-blue-300 transition-all'
           title='저장하기'
         />

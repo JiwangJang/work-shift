@@ -35,7 +35,11 @@ const SignUp = ({ LoginStateRef }) => {
         console.log(res);
         if (res.data.success) {
           alert("회원가입 성공! 바로 작업페이지로 이동시켜드리겠습니다!");
-          signIn("credentials", { ID, Password });
+          signIn("credentials", {
+            ID,
+            Password,
+            callbackUrl: `${window.location.origin}/shift-calender`,
+          });
         } else {
           switch (res.data.msg) {
             case "IdOverlap":

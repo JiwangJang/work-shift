@@ -1,5 +1,6 @@
 // Current route is api/SignUp
 
+import DataMaker from "@/libs/DataMaker";
 import db from "@/libs/dbConfig";
 import randomCharGenerator from "@/libs/randomChar";
 import bcrypt from "bcrypt";
@@ -14,10 +15,15 @@ const POST = async (req) => {
       throw "overlap";
     const bcryptedPw = bcrypt.hashSync(Password, 12);
     const shareCode = randomCharGenerator();
+    const primeData = DataMaker();
     await db.execute(
       "INSERT INTO userinfo(id, password, sharecode) VALUE(?, ?, ?)",
       [ID, bcryptedPw, shareCode]
     );
+    await db.execute("INSERT INTO userdata(userid, data) VALUES(?, ?);", [
+      ID,
+      primeData,
+    ]);
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error(error);
