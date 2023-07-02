@@ -23,16 +23,12 @@
   src: url("../public/font/workername.ttf");
 }
 @font-face {
-  font-family: "loginPageTitle";
-  src: url("../public/font/loginPageTitle.ttf");
-}
-@font-face {
-  font-family: "loginPageArticle";
-  src: url("../public/font/loginPageArticle.ttf");
-}
-@font-face {
   font-family: "popup";
-  src: url("../public/font/popup.ttf");
+  src: url("../public/font/KOTRA.ttf");
+}
+@font-face {
+  font-family: "LoginPage";
+  src: url("../public/font/ROKAF\ Slab\ Serif\ Bold.ttf");
 }
 
 * {
@@ -149,9 +145,6 @@ a {
   height: 18%;
   background-color: rgb(253 224 71);
   border-radius: 20px;
-  font-family: "article";
-  font-size: xx-large;
-  font-weight: bold;
   transition: all 0.3s ease-in-out;
 }
 
@@ -178,119 +171,6 @@ a {
   font-size: 2.5rem;
 }
 
-@keyframes rightSlide {
-  0% {
-    left: -1000px;
-  }
-
-  100% {
-    left: 0;
-  }
-}
-
-@keyframes leftSlide {
-  0% {
-    right: -4000px;
-  }
-
-  100% {
-    right: 0;
-  }
-}
-
-@keyframes bottomSlide {
-  0% {
-    bottom: -100%;
-  }
-
-  100% {
-    bottom: 0;
-  }
-}
-
-@keyframes tornado {
-  0% {
-    opacity: 0;
-    transform: rotate(720deg);
-  }
-
-  100% {
-    opacity: 1;
-    transform: rotate(0deg);
-  }
-}
-
-@keyframes LForm {
-  0% {
-    left: 780px;
-    top: -1000px;
-  }
-  90% {
-    left: 780px;
-  }
-
-  100% {
-    left: 0;
-    top: 0;
-  }
-}
-
-@keyframes biggerToNormal {
-  0% {
-    opacity: 0;
-    font-size: 30px;
-  }
-
-  50% {
-    font-size: 100px;
-  }
-
-  100% {
-    opacity: 1;
-    font-size: 30px;
-  }
-}
-
-@keyframes twinkle {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-/* 맨처음 화면 애니메이션들 */
-.login-page-left-section-first {
-  position: relative;
-  animation: rightSlide 0.7s ease-in-out;
-}
-.login-page-left-section-second {
-  position: relative;
-  animation: bottomSlide 0.7s ease-in-out 1s backwards;
-}
-.login-page-left-section-third {
-  position: relative;
-  animation: leftSlide 0.7s ease-in-out 2.3s backwards;
-}
-.login-page-left-section-fourth {
-  position: relative;
-  animation: tornado 1s ease-in-out 3.5s backwards;
-}
-.login-page-left-section-fiveth {
-  position: relative;
-  animation: LForm 1s ease-in-out 4.5s backwards;
-}
-.login-page-left-section-sixth {
-  position: relative;
-  animation: biggerToNormal 1s ease-in-out 6s backwards;
-}
-.login-page-left-section-seventh {
-  position: relative;
-  animation: twinkle 1s ease-in-out 7s alternate backwards;
-}
-
 /* 달력에서 클릭했었다는거 표시 할 때 또는 해당 근무자만 볼 때  */
 .clicked,
 .myWorkDayChecker {
@@ -312,4 +192,33 @@ a {
 }
 .scroll-design::-webkit-scrollbar-track {
   background-color: #e5e7eb;
+}
+
+/* 첫페이지에 비스듬한 사각형 */
+#ractangle {
+  transform: skewX(-15deg) translateX(-200px);
+}
+
+/* 소셜 로그인과 일반 로그인 구분선 */
+#or::after {
+  position: absolute;
+  top: 50%;
+  right: 1%;
+  content: "";
+  border-bottom: 2px rgb(203, 213, 225) solid;
+  width: 43%;
+  display: block;
+}
+#or::before {
+  position: absolute;
+  top: 50%;
+  left: 1%;
+  content: "";
+  border-bottom: 2px rgb(203, 213, 225) solid;
+  width: 43%;
+  display: block;
+}
+
+.pw-revise {
+  grid-template-columns: 15% 85%;
 }
