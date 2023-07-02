@@ -6,9 +6,9 @@ import saveIcon from "/public/image/saveIcon.png";
 import LogoutIcon from "/public/image/Logout.png";
 import { signOut } from "next-auth/react";
 import axios from "axios";
-import Spinner from "./Header-component/spinner";
+import Spinner from "./Header-component/Spinner";
 
-const Header = () => {
+const Header = ({ userid }) => {
   const [sidebarClick, setSidebarClick] = useState(true);
   const SpinnerRef = useRef();
   const sideBarEvent = () => {
@@ -54,7 +54,7 @@ const Header = () => {
     const top = document.body.offsetWidth / 2 - 390;
     const left = window.screen.height / 2 - 222.5;
     const specs = `height=780, width=445, top=${top}, left=${left}`;
-    window.open(`/pw-revise`, "", specs);
+    window.open(`/pw-revise/${userid}`, "", specs);
   };
 
   const ShareEvent = async () => {

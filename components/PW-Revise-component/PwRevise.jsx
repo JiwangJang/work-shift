@@ -1,6 +1,7 @@
 "use client";
 
 import axios from "axios";
+import { signOut } from "next-auth/react";
 import { useRef, useState } from "react";
 
 const PwRevise = ({ mode, id }) => {
@@ -49,6 +50,17 @@ const PwRevise = ({ mode, id }) => {
     spinner.classList.toggle("invisible");
   };
 
+  const DeleteBtnEvent = async () => {
+    if (confirm("정말 삭제하시겠습니까? 다시 복구하실 수 없습니다")) {
+      const result = await axios.delete("/api/delete");
+      if (result.data.success) {
+        signOut({ redirect: "/" });
+        return alert("삭제 완료");
+      } else
+        return alert("서버에서 에러가 발생했습니다. 잠시후 다시 시도해주세요");
+    }
+  };
+
   return (
     <div className='flex flex-col gap-3 w-full items-center mt-5'>
       <p className='text-[35px]'>계정비밀번호 수정</p>
@@ -86,6 +98,12 @@ const PwRevise = ({ mode, id }) => {
         onClick={ReviseBtnEvent}
       >
         변경하기
+      </button>
+      <button
+        className='bg-yellow-300 rounded-full w-[230px] text-[30px] shadow-2xl hover:shadow-yellow-300 hover:bg-yellow-400'
+        onClick={DeleteBtnEvent}
+      >
+        계정삭제하기
       </button>
     </div>
   );
