@@ -46,7 +46,7 @@ const Header = ({ userid }) => {
     const Spinner = SpinnerRef.current;
     const SpinnerChildren = Spinner.firstChild.children;
     Spinner.classList.toggle("invisible");
-    SpinnerChildren[1].innerText = "로그아웃 하는중";
+    SpinnerChildren[1].innerText = "로그아웃중";
     signOut({ callbackUrl: `/` });
   };
 

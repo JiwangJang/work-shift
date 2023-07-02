@@ -94,14 +94,14 @@ const Login = ({ LoginStateRef }) => {
           height={70}
           onClick={() => LoginButtonEvent("kakao")}
         />
-        <Image
+        {/* <Image
           className='w-4/5 rounded-full shadow-xl cursor-pointer hover:shadow-google transition-all'
           src={"/svg/GOOGLE.svg"}
           alt='GOOGLE-Login-Button'
           width={530}
           height={70}
           onClick={() => LoginButtonEvent("google")}
-        />
+        /> */}
       </div>
     </div>
   );
